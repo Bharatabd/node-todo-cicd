@@ -5,7 +5,7 @@ pipeline{
         stage("Code Clone"){
             steps{
                 echo "Code Clone Stage"
-                git url: "https://github.com/LondheShubham153/node-todo-cicd.git", branch: "master"
+                git url: "https://github.com/Bharatabd/node-todo-cicd.git", branch: "master"
             }
         }
         stage("Code Build & Test"){
@@ -17,7 +17,7 @@ pipeline{
         stage("Push To DockerHub"){
             steps{
                 withCredentials([usernamePassword(
-                    credentialsId:"dockerHubCreds",
+                    credentialsId:"dockeHubCred",
                     usernameVariable:"dockerHubUser", 
                     passwordVariable:"dockerHubPass")]){
                 sh 'echo $dockerHubPass | docker login -u $dockerHubUser --password-stdin'
