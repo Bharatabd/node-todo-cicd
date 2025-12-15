@@ -8,7 +8,18 @@ pipeline{
                 git url: "https://github.com/Bharatabd/node-todo-cicd.git", branch: "master"
             }
         }
-        stage("Code Build & Test"){
+         stage("Install Dependencies"){
+            steps{
+                echo "installing dependencies"
+                sh "npm install"
+            }
+        }
+         stage("Run Tests"){
+            steps{
+                sh "npm test"
+            }
+        }
+        stage("Code Build"){
             steps{
                 echo "Code Build Stage"
                 sh "docker build -t node-app ."
